@@ -1,0 +1,10 @@
+api:
+  basepath: "is-flights-ea/api/${api.version}"
+  version: "v1"
+  
+process-api:
+  host: "localhost"
+  port: "8089"
+  basepath: "is-flights-pa/api/${process-api.version}"
+  version: "v1"
+  timeout: "180000" 
