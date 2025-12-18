@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<sub-flow name="getFlights" doc:id="b0b42893-7ee1-4f97-a471-630d02d0a228" >
+		<set-variable value="#[message.attributes.queryParams.destination]" doc:name="destination" doc:id="4466692f-cee8-4934-9662-6597bc4905fb" variableName="destination" />
+		<http:request doc:name="GET PA /flights" doc:id="701ebb27-466a-4ac3-a551-ddb375814647" config-ref="HTTP_Request_process_api_config" path="/flights" >
+			<http:query-params ><![CDATA[#[output application/java
+---
+{
+	("destination": vars.destination) if (!isEmpty(vars.destination))
+}]]]></http:query-params>
+		</http:request>
+	</sub-flow>
+	<flow name="getFlightById" doc:id="26103bc4-abdc-46d3-a39b-1ec7abcc3b91" >
+		<set-variable value="#[attributes.uriParams.flightId]" doc:name="flightId" doc:id="c14e5845-45e7-43ca-8dee-994151bec93b" variableName="flightId" />
+		<http:request doc:name="GET PA /flights" doc:id="4c09d470-b7f3-426c-b551-c1ac4a9fd7cb" config-ref="HTTP_Request_process_api_config" path="/flights/{Id}" >
+			<http:uri-params ><![CDATA[#[output application/java
+---
+{
+	Id : vars.flightId
+}]]]></http:uri-params>
+		</http:request>
+		<error-handler >
+			<on-error-propagate enableNotifications="true" logException="true" doc:name="On Error Propagate" doc:id="fb32c0f3-91b9-4d5d-ad63-ac85ff2f9284" >
+				<set-payload value='#[output application/json --- { "message": error.description }]' doc:name="error.message" doc:id="bb86f0d8-a924-4763-96aa-fa0be5e3222a" />
+				<set-variable value="404" doc:name="httpStatus" doc:id="6f5186d6-2731-4f9c-8a50-8cd7d9a9cb7e" variableName="httpStatus" />
+			</on-error-propagate>
+		</error-handler>
+	</flow>
+</mule>
