@@ -29,29 +29,4 @@ http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/
 		</http:request>
 		<flow-ref doc:name="responseProcessingSubFlow" doc:id="287259cf-95b1-4c35-a56a-edd57bbc963e" name="responseProcessingSubFlow"/>
 	</sub-flow>
-	<sub-flow name="responseProcessingSubFlow" doc:id="70fa7a7a-dad8-4a3e-8bb4-1d0414d5c919" >
-		<choice doc:name="Choice" doc:id="bd6cbaa5-4781-4105-aea2-ae984ee941d9" >
-			<when expression="#[attributes.statusCode &lt; 400]" >
-				<ee:transform doc:name="response" doc:id="6c7bac49-9ffa-427e-aa01-cc5767eec5ab" >
-					<ee:message >
-						<ee:set-payload ><![CDATA[%dw 2.0
-output application/json
----
-payload]]></ee:set-payload>
-					</ee:message>
-				</ee:transform>
-			</when>
-			<otherwise >
-				<set-variable value="#[attributes.statusCode]" doc:name="httpStatus" doc:id="030292bb-3fdb-4366-b7c2-2503691dfe97" variableName="httpStatus" />
-				<ee:transform doc:name="error" doc:id="b25c4084-671d-486f-abd6-80ec9e46ea67" >
-					<ee:message >
-						<ee:set-payload ><![CDATA[%dw 2.0
-output application/json
----
-payload]]></ee:set-payload>
-					</ee:message>
-				</ee:transform>
-			</otherwise>
-		</choice>
-	</sub-flow>
 </mule>

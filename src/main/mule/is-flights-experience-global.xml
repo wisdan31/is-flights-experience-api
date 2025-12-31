@@ -12,4 +12,5 @@ http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/htt
 	<http:request-config name="HTTP_Request_process_api_config" doc:name="HTTP Request config" doc:id="e06c259e-5a6a-4b5f-822a-8a90438bd24a" basePath="${process-api.basepath}" responseTimeout="${process-api.timeout}">
 		<http:request-connection host="${process-api.host}" port="${process-api.port}" connectionIdleTimeout="99999999"/>
 	</http:request-config>
+	<import doc:name="Import" doc:id="da86f403-6aef-431b-84eb-fcdf0184e3b6" file="global-error-handler.xml" />
 </mule>
