@@ -11,8 +11,10 @@
                 <http:headers><![CDATA[#[vars.outboundHeaders default {}]]]></http:headers>
             </http:error-response>
         </http:listener>
-        <apikit:router config-ref="is-flights-experience-api-config" />
-        <error-handler ref="global_error_handler" /> 
+        <flow-ref doc:name="logInitialRequest" doc:id="0e68a200-3471-4d42-ac3d-4f7e33d3da24" name="logInitialRequest"/>
+		<apikit:router config-ref="is-flights-experience-api-config" />
+        <flow-ref doc:name="logFinalResponse" doc:id="15d76175-0cb8-4792-8747-46a8cc7b6749" name="logFinalResponse"/>
+		<error-handler ref="global_error_handler" /> 
     </flow>
     <flow name="is-flights-experience-api-console">
         <http:listener config-ref="HTTP_Listener_config" path="${api.basepath}/console/*">
