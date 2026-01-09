@@ -7,14 +7,11 @@
 http://www.mulesoft.org/schema/mule/mule-apikit http://www.mulesoft.org/schema/mule/mule-apikit/current/mule-apikit.xsd http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
 http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
 	<apikit:config name="is-flights-experience-api-config" api="is-flights-experience-api.raml" outboundHeadersMapName="outboundHeaders" httpStatusVarName="httpStatus" queryParamsStrictValidation="true"/>
-	<apikit:config name="is-flights-experience-api-config" api="is-flights-experience-api.raml" outboundHeadersMapName="outboundHeaders" httpStatusVarName="httpStatus" queryParamsStrictValidation="true"/>
-	<global-property doc:name="Global Property" doc:id="82b36b4f-6b4d-4b57-821c-78ff2d454503" name="env" value="local" />
-	<configuration-properties doc:name="Configuration properties" doc:id="f4907166-250d-4a82-a809-f0cfa88593d7" file="config/${env}-properties.yaml" />
-	<http:request-config name="HTTP_Request_process_api_config" doc:name="HTTP Request config" doc:id="e06c259e-5a6a-4b5f-822a-8a90438bd24a" basePath="${process-api.basepath}" responseTimeout="${process-api.timeout}">
-		<http:request-connection host="${process-api.host}" port="${process-api.port}" connectionIdleTimeout="99999999"/>
-	<http:request-config name="HTTP_Request_process_api_config" doc:name="HTTP Request config" doc:id="e06c259e-5a6a-4b5f-822a-8a90438bd24a" basePath="${process-api.basepath}" responseTimeout="${process-api.timeout}">
+	<global-property doc:name="Global Property" doc:id="8bc88970-d8c0-4d2e-a69c-b6ba66e90748" name="env" value="local" />
+	<configuration-properties doc:name="Configuration properties" doc:id="eea02c75-1660-4519-9121-21d396b9280a" file="config/${env}-properties.yaml" />
+	<http:request-config name="HTTP_Request_process_api_config" doc:name="HTTP Request config" doc:id="8ced2449-1dbe-41c6-b30c-923b193f3c99" basePath="${process-api.basepath}" responseTimeout="${process-api.timeout}">
 		<http:request-connection host="${process-api.host}" port="${process-api.port}" connectionIdleTimeout="99999999"/>
 	</http:request-config>
-	<import doc:name="Import" doc:id="da86f403-6aef-431b-84eb-fcdf0184e3b6" file="global-error-handler.xml" />
-	<import doc:name="Import" doc:id="efdd4bed-14a1-4f8a-94cd-450888356157" file="logging.xml" />
+	<import doc:name="Import" doc:id="a0c9036e-c862-4558-a55f-4859f9de027c" file="global-error-handler.xml" />
+	<import doc:name="Import" doc:id="e67cb574-fbc7-43f4-98aa-629b5c5589b1" file="logging.xml" />
 </mule>

@@ -5,16 +5,12 @@
 	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
 http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
 http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
-<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
-	xmlns="http://www.mulesoft.org/schema/mule/core"
-	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
-http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
-http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
-	<sub-flow name="getFlights" doc:id="b0b42893-7ee1-4f97-a471-630d02d0a228" >
-		<set-variable value="#[message.attributes.queryParams.destination]" doc:name="destination" doc:id="4466692f-cee8-4934-9662-6597bc4905fb" variableName="destination" />
-		<set-variable value='#[{ "status": "Get American Flights request"}]' doc:name="logMessage" doc:id="b6e030a0-b9d2-4739-97e7-efce0cafb1fc" variableName="logMessage" />
-		<flow-ref doc:name="logAudit" doc:id="48baea93-e402-45a3-b8ad-a90c96f15f37" name="logAudit" />
-		<http:request doc:name="GET PA /flights" doc:id="701ebb27-466a-4ac3-a551-ddb375814647" config-ref="HTTP_Request_process_api_config" path="/flights" >
+
+	<sub-flow name="getFlights" doc:id="187148e4-ee73-4df8-bfab-801111a29902" >
+		<set-variable value="#[message.attributes.queryParams.destination]" doc:name="destination" doc:id="54803416-e717-424a-868f-28761f253d92" variableName="destination" />
+		<set-variable value='#[{ "status": "Get American Flights request"}]' doc:name="logMessage" doc:id="6e57ec4f-d46a-4b62-8cb8-bd39459b3fec" variableName="logMessage" />
+		<flow-ref doc:name="logAudit" doc:id="9b008ee6-9bff-4410-999c-6c8a206ec888" name="logAudit" />
+		<http:request doc:name="GET PA /flights" doc:id="89e36ea1-8509-44fb-96c9-8afd1442d40e" config-ref="HTTP_Request_process_api_config" path="/flights" >
 			<http:query-params ><![CDATA[#[output application/java
 ---
 {
@@ -24,14 +20,14 @@ http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/
 				<http:success-status-code-validator values="200..599" />
 			</http:response-validator>
 		</http:request>
-		<flow-ref doc:name="responseProcesingSubFlow" doc:id="1c07cc1e-9a38-44ab-a764-ca2168dafb63" name="responseProcessingSubFlow" />
+		<flow-ref doc:name="responseProcesingSubFlow" doc:id="11f80589-5ff5-446f-a988-796b7c556f8a" name="responseProcessingSubFlow" />
 	</sub-flow>
-	<sub-flow name="getFlightById" doc:id="82eb2a97-3541-4258-8583-a484f539ee0f" >
-	<sub-flow name="getFlightById" doc:id="82eb2a97-3541-4258-8583-a484f539ee0f" >
-		<set-variable value="#[attributes.uriParams.flightId]" doc:name="flightId" doc:id="c14e5845-45e7-43ca-8dee-994151bec93b" variableName="flightId" />
-		<set-variable value='#[{ "status": "Get American Flights request"}]' doc:name="logMessage" doc:id="d683b28c-f495-40a4-a89a-c9591998773a" variableName="logMessage" />
-		<flow-ref doc:name="logAudit" doc:id="a3124adc-737b-4cc3-99d0-7b517eeb5f5f" name="logAudit" />
-		<http:request doc:name="GET PA /flights" doc:id="4c09d470-b7f3-426c-b551-c1ac4a9fd7cb" config-ref="HTTP_Request_process_api_config" path="/flights/{Id}">
+	
+	<sub-flow name="getFlightById" doc:id="2b6641d0-30d8-4c77-ad24-9d5c550d8fa2" >
+		<set-variable value="#[attributes.uriParams.flightId]" doc:name="flightId" doc:id="dc68e527-bb5e-4664-b3b0-7ca6b3506666" variableName="flightId" />
+		<set-variable value='#[{ "status": "Get American Flights request"}]' doc:name="logMessage" doc:id="4bd925c4-f8f1-4e9a-830d-674a6be900a8" variableName="logMessage" />
+		<flow-ref doc:name="logAudit" doc:id="feaeb77f-20f6-4350-8e2b-58c3813204a1" name="logAudit" />
+		<http:request doc:name="GET PA /flights" doc:id="e0db835d-e7c0-48fa-a09d-71d176597a3b" config-ref="HTTP_Request_process_api_config" path="/flights/{Id}">
 			<http:uri-params><![CDATA[#[output application/java
 ---
 {
@@ -41,8 +37,7 @@ http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/
 				<http:success-status-code-validator values="200..599" />
 			</http:response-validator>
 		</http:request>
-		<flow-ref doc:name="responseProcessingSubFlow" doc:id="287259cf-95b1-4c35-a56a-edd57bbc963e" name="responseProcessingSubFlow"/>
+		<flow-ref doc:name="responseProcessingSubFlow" doc:id="ac893da8-f030-480d-a237-6333e70e1fe6" name="responseProcessingSubFlow"/>
 	</sub-flow>
-		<flow-ref doc:name="responseProcessingSubFlow" doc:id="287259cf-95b1-4c35-a56a-edd57bbc963e" name="responseProcessingSubFlow"/>
-	</sub-flow>
+	
 </mule>
