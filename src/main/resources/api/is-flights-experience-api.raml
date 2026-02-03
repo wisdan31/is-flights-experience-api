@@ -30,3 +30,18 @@ types:
             application/json:
               type: Flight
               example: !include examples/flight-example.json
+
+/weather:
+  get:
+    description: Retreive weather information for country capital
+    queryParameters:
+      countryCode:
+        description: Code of the country to get capital weather for
+        required: true
+        type: string
+        example: "ua"
+    responses:
+      200:
+        body:
+          application/json:
+            example: "56 c, Kyiv
