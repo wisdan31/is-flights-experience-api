@@ -39,5 +39,15 @@ http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/
 		</http:request>
 		<flow-ref doc:name="responseProcessingSubFlow" doc:id="ac893da8-f030-480d-a237-6333e70e1fe6" name="responseProcessingSubFlow"/>
 	</sub-flow>
+	<sub-flow name="getWeatherSnapshot" doc:id="ee5ab47d-da45-477a-b184-76db490c8f31" >
+		<set-variable value="#[attributes.queryParams.countryCode]" doc:name="countryCode" doc:id="9ebe1d6b-860d-40aa-b43a-c6a665566af8" variableName="countryCode" />
+		<http:request doc:name="GET /weatherSnapshot" doc:id="8f610984-9d05-4f2d-b21e-685c844ad254" config-ref="HTTP_Request_process_api_config" path="/weatherSnapshot" >
+			<http:query-params ><![CDATA[#[output application/java
+---
+{
+	"countryCode" : vars.countryCode
+}]]]></http:query-params>
+		</http:request>
+	</sub-flow>
 	
 </mule>
