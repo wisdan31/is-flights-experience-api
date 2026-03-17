@@ -35,6 +35,9 @@
         <flow-ref doc:name="getFlightById" doc:id="2eed462f-7afb-4ef8-afd4-47b61de4d2cc" name="getFlightById" />
     </flow>
     <flow name="get:\weatherSnapshot:is-flights-experience-api-config">
-		<flow-ref doc:name="getWeatherSnapshot" doc:id="cab03d66-6d88-4f5c-ba3d-74c32174f1ca" name="getWeatherSnapshot" />
+        <flow-ref doc:name="getWeatherSnapshot" doc:id="cab03d66-6d88-4f5c-ba3d-74c32174f1ca" name="getWeatherSnapshot" />
+    </flow>
+    <flow name="post:\countries\publish:is-flights-experience-api-config">
+		<flow-ref doc:name="triggerCountryEventsPublishing" doc:id="f25da8b2-e9b4-4202-bb86-09313af7261e" name="triggerCountryEventsPublishing"/>
     </flow>
 </mule>

@@ -45,3 +45,11 @@ types:
         body:
           application/json:
             example: !include examples/weather-db-example.json
+
+/countries:
+  /publish:
+    post:
+      description: Trigger country data publish event
+      responses:
+        202:
+          description: Process started.
