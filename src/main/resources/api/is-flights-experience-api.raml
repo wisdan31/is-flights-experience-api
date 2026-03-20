@@ -47,9 +47,9 @@ types:
             example: !include examples/weather-db-example.json
 
 /countries:
-  /publish:
+  /triggerScheduler:
     post:
-      description: Trigger country data publish event
+      description: Trigger scheduler that publishes event
       responses:
         202:
           description: Process started.
