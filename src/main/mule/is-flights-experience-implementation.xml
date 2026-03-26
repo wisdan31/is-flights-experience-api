@@ -47,7 +47,11 @@ http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/
 {
 	"countryCode" : vars.countryCode
 }]]]></http:query-params>
+			<http:response-validator >
+				<http:success-status-code-validator values="200..599" />
+			</http:response-validator>
 		</http:request>
+		<flow-ref doc:name="responseProcessingSubFlow" doc:id="6476aa8c-630f-499d-a7cf-77c1aa5f2903" name="responseProcessingSubFlow" />
 	</sub-flow>
 	<sub-flow name="triggerScheduler" doc:id="e3e792c0-13c3-4654-a809-df2bd38dac18" >
 		<http:request doc:name="POST /countries/triggerScheduler" doc:id="fed019af-53c0-43c2-bf47-44b589217980" config-ref="HTTP_Request_process_api_config" method="POST" path="/countries/triggerScheduler"/>
